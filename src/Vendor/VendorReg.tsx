@@ -28,8 +28,8 @@ const location = useLocation();
 
 const [authenticated, setAuthenticated] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);//for array of objects
-  const [shopPicture, setShopPicture] = useState<Record<any,null>>(null);
-  const [certificate, setCertificate] = useState<Record<any,null>>(null);
+  const [shopPicture, setShopPicture] = useState<File|null>(null);
+  const [certificate, setCertificate] = useState<File|null>(null);
   const [shopPreview, setShopPreview] = useState("");
   const [certPreview, setCertPreview] = useState("");
 const [isSaving, setIsSaving] = useState(false);
