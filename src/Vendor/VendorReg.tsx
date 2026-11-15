@@ -368,11 +368,12 @@ async function OnFormSubmit(e: React.FormEvent<HTMLFormElement>) {
       FrmData.append("selcate", selectedCategories.join(","))
       response = await axios.post(url2, FrmData, { headers: { 'Content-Type': 'multipart/form-data' } })
     }
+    if(response && response.data!=null){
  response.data.msg.estd = response.data.msg.estd.split("T")[0].split("-")[0];
     setForm(response.data.msg)
         setSelectedCategories(resp.data.msg.selcate.split(","))
     setShopPreview(response.data.msg.shoppicurl);
-    setCertPreview(response.data.msg.certpicurl)
+    setCertPreview(response.data.msg.certpicurl)}
   }
   //==========================
 
