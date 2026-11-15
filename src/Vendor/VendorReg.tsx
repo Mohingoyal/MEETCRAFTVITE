@@ -145,12 +145,11 @@ if (!authenticated) {
     if (e.target.files != null&&e.target.files[0]!=null) {
       setShopPicture(e.target.files[0]);
       setForm((form) => { return { ...form, ["shoppic"]: e.target.files[0] } });
-    }
-    let url:string
+    }let urlofshop:string;
     if(e.target.files!=null)
-     url = URL.createObjectURL(e.target.files[0])
-    if (url != "")
-      setShopPreview(url);
+     {urlofshop = URL.createObjectURL(e.target.files[0])}
+    if (urlofshop != null)
+      setShopPreview(urlofshop);
 
 
   };
