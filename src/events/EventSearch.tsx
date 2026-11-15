@@ -454,7 +454,7 @@ const [authenticated, setAuthenticated] = useState(false);
  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-let email=localStorage.getItem("emailid")
+let email=localStorage.getItem("emailid")?localStorage.getItem("emailid"):"";
   //  alert(email)
   const vendorsPerPage = 3;
   const [favs, setfavs] = useState<string[]>([]);
