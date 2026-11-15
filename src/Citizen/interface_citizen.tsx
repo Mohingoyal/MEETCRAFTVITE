@@ -1,6 +1,6 @@
 
 type CitizenForm = {
-  emailid: string;
+  emailid: string | null;
   acardno: string;
   name: string;
   dob: string;

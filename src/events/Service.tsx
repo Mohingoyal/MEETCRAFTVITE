@@ -1,7 +1,7 @@
 
 interface servicetype{
   service:string,
-    toggleService?:(recv:string)=>void;
+    toggleService:(recv:string)=>void;
     isSelected:boolean
 }
 function Service(item:servicetype) {

@@ -20,7 +20,7 @@ function Fav() {
     const [loading, setLoading] = useState(true);
     const [vendoremails, setvendoremails] = useState<string[]>([]);
     const [vendors, setvendors] = useState<Vendors[]>([]);
-    const [ratings, setRatings] = useState({});
+    const [ratings, setRatings] = useState<Record<string, number>>({});//empty ko pehle batana psdega ki kis format mein data aayega
 let email=localStorage.getItem("emailid")
     const [authenticated, setAuthenticated] = useState(false);
 
@@ -57,7 +57,7 @@ let email=localStorage.getItem("emailid")
 
         //}
 
-        const vendorfavs = resp.data.vendoremails.map((item) =>
+        const vendorfavs = resp.data.vendoremails.map((item:string) =>
             axios.post(url1, { emailid: item })
         )
         const responses = await Promise.all(vendorfavs)//promise . allse saari axios.post requests asynchronously nhi chalengi
@@ -127,7 +127,7 @@ useEffect(() => {
 if (!authenticated) {
     return <LoginRequired />;
 }
-async function rateVendor(vendorEmail, stars) {
+async function rateVendor(vendorEmail:string, stars:number) {
          let token = localStorage.getItem("token");
   try {
     const url = "http://www.localhost:2001/vendor/rate";
@@ -158,7 +158,7 @@ async function rateVendor(vendorEmail, stars) {
     // ,[vendors])
 
 
-    async function removefavourites(emailidtoremove) {
+    async function removefavourites(emailidtoremove:string) {
      let token = localStorage.getItem("token");
         setvendoremails((prev) => prev.filter((item) => item != emailidtoremove))
         // alert("hi")
@@ -187,7 +187,7 @@ async function rateVendor(vendorEmail, stars) {
 
 
         //   })
-        const vendorsfavs = resp.data.vendoremails.map((item) =>
+        const vendorsfavs = resp.data.vendoremails.map((item:string) =>
             axios.post(url1, { emailid: item })
         )
         const waitforresponsesofvendors = await Promise.all(vendorsfavs);

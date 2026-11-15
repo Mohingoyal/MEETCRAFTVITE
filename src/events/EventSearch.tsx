@@ -464,7 +464,7 @@ let email=localStorage.getItem("emailid")
     (currentPage - 1) * vendorsPerPage,
     currentPage * vendorsPerPage
   );
-    async function getfavourites(email) {
+    async function getfavourites(email:string) {
     let token=localStorage.getItem("token")
     let url = "http://www.localhost:2001/citizen/getfavs"
     // alert("favs")
@@ -722,7 +722,7 @@ if(results.status!=null)
   }
 
   //============delicious============================
-  async function addtofavourites(vendormail) {
+  async function addtofavourites(vendormail:string) {
 
             let token = localStorage.getItem("token");
     let url = "http://www.localhost:2001/citizen/updatefavs"
