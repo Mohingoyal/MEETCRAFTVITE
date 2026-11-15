@@ -146,8 +146,10 @@ if (!authenticated) {
       setShopPicture(e.target.files[0]);
       setForm((form) => { return { ...form, ["shoppic"]: e.target.files[0] } });
     }
-    let url = URL.createObjectURL(e.target.files[0])
-    if (url != null)
+    let url:string
+    if(e.target.files!=null)
+     url = URL.createObjectURL(e.target.files[0])
+    if (url != "")
       setShopPreview(url);
 
 
