@@ -454,7 +454,7 @@ const [authenticated, setAuthenticated] = useState(false);
  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  let email:string;
+  let email:string|null;
   if(localStorage && localStorage.getItem("emailid")!=null)
  {email=localStorage.getItem("emailid")}
   //  alert(email)
