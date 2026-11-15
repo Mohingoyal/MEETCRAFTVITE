@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+const API_URL=import.meta.env.VITE_API_URL;
 function Login() {
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function Login() {
       setMessage("Please enter your Email ID and Password.");
       return;
     }
-    let url = "http://www.localhost:2001/users/login"
+    let url = `${API_URL}/users/login`
     let response = await axios.post(url, { emailid: emailid, password: password })
     if (response.data.found == 0) {
       setMessage("Emailid entered is not in database.")

@@ -426,6 +426,7 @@ import Service from "./Service";
 import type {Vendors} from "./vendorsinterface"
 import { useLocation } from "react-router-dom";
 import LoginRequired from "../LoginRequired";
+const API_URL=import.meta.env.VITE_API_URL;
 type EventItem = {
   event: string;
   // eventname?: string;
@@ -468,7 +469,7 @@ const [authenticated, setAuthenticated] = useState(false);
   );
     async function getfavourites(email:string|null) {
     let token=localStorage.getItem("token")
-    let url = "http://www.localhost:2001/citizen/getfavs"
+    let url = `${API_URL}/citizen/getfavs`
     // alert("favs")
     let resp = await axios.post(url, { email: email }, {
         headers: {
@@ -497,7 +498,7 @@ console.log("EVENT TOKEN:", localStorage.getItem("token"));
             }
 
             let response = await axios.post(
-                "http://www.localhost:2001/users/checkauth",
+               `${API_URL}/users/checkauth`,
                 {},
                 {
                     headers: {
@@ -568,7 +569,7 @@ console.log("TOKEN TYPE:", typeof token);
 console.log("TOKEN PARTS:", token?.split(".").length);
 // alert(token)
         const resp = await axios.post(
-          "http://www.localhost:2001/events/geteventsandtheirservices",//for events and services
+         `${API_URL}/events/geteventsandtheirservices`,//for events and services
           {},
           {headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }}
         );
@@ -592,7 +593,7 @@ console.log(Array.isArray(resp.data));
     async function fetchCities() {
       try {
         const resp = await axios.post(
-          "http://www.localhost:2001/events/cities",
+          `${API_URL}/events/cities`,
 
         );
         setCityArr(resp.data);
@@ -678,7 +679,7 @@ if (!authenticated) {
     try {
       // alert(selectedServices);
       const resp = await axios.post(
-        "http://www.localhost:2001/vendor/getvendorsforevent",
+        `${API_URL}/vendor/getvendorsforevent`,
         {
           city:city,
 
@@ -727,7 +728,7 @@ if(results.status!=null)
   async function addtofavourites(vendormail:string) {
 
             let token = localStorage.getItem("token");
-    let url = "http://www.localhost:2001/citizen/updatefavs"
+    let url = `${API_URL}/citizen/updatefavs`
     let resp;
     //  alert("added")
     setfavs((prev) =>//setfavs apna pura array of string de diya

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+const API_URL=import.meta.env.VITE_API_URL;
 function ForgotPassword() {
     const [step, setStep] = useState(1);
 const [message, setMessage] = useState("");
@@ -20,7 +21,7 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
             return;
         }
 //ab otp bhejte hain usne email id toh bhej hi di
-let url="http://www.localhost:2001/users/forgotpassword"
+let url=`${API_URL}/users/forgotpassword`
 let resp=await axios.post(url,{emailid:email})
 setMessage(resp.data.msg);
         setStep(2);
@@ -31,7 +32,7 @@ setMessage(resp.data.msg);
             return;
         }
 //otp aa toh gaya par ab verify karo ki dheek hai bhi ya nhi
-let url="http://www.localhost:2001/users/verifyotp"
+let url=`${API_URL}/users/verifyotp`
 let resp=await axios.post(url,{emailid:email,otp:otp})
 setMessage(resp.data.msg);
 if(resp.data.status==true)
@@ -49,7 +50,7 @@ if(resp.data.status==true)
             return;
         }
 //bas hun gal tah ban gayi, now just apply the axios or we can say api endpoint
-let url="http://www.localhost:2001/users/resetpassword"
+let url=`${API_URL}/users/resetpassword`
 let resp=await axios.post(url,
     {emailid:email,password:password},
     {headers:{"Content-Type":"application/x-www-form-urlencoded",'authorization':`Bearer ${localStorage.getItem("resettoken")}`}}

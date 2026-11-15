@@ -15,7 +15,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import type { Vendors } from '../events/vendorsinterface';
 import LoginRequired from '../LoginRequired';
-
+const API_URL=import.meta.env.VITE_API_URL;
 function Fav() {
     const [loading, setLoading] = useState(true);
     const [vendoremails, setvendoremails] = useState<string[]>([]);
@@ -30,7 +30,7 @@ let email=localStorage.getItem("emailid")
     async function getfavs() {//alert("favs enters the chat")
           let token = localStorage.getItem("token");
         //   alert("INTO THE GETFAVS")
-        let url = "http://www.localhost:2001/citizen/getfavs"
+        let url = `${API_URL}/citizen/getfavs`
         // alert(email)
         let resp = await axios.post(url, { email: email },{headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }});//citizen ke router se favs collection se all info aa jayeggi is email ke kya favs the
         if(resp.data!=null)
@@ -39,7 +39,7 @@ let email=localStorage.getItem("emailid")
         setvendors([]);//taaki vendors wala use state khaali ho jaye
         //alert("KOHLI((((((((")
       //  alert(resp.data.vendoremails)
-        let url1 = "http://www.localhost:2001/vendor/findvendors"
+        let url1 = `${API_URL}/vendor/findvendors`
         //   resp.data.vendoremails.map( (item)=>
         //   {let response;
         //     // alert(item)
@@ -80,7 +80,7 @@ useEffect(() => {
             }
 //alert("token hai")
             let response = await axios.post(
-                "http://www.localhost:2001/users/checkauth",
+                `${API_URL}/users/checkauth`,
                 {},{headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }}
             );
 //alert(JSON.stringify(response.data))
@@ -130,7 +130,7 @@ if (!authenticated) {
 async function rateVendor(vendorEmail:string, stars:number) {
          let token = localStorage.getItem("token");
   try {
-    const url = "http://www.localhost:2001/vendor/rate";
+    const url = `${API_URL}/vendor/rate`;
 
     const resp = await axios.post(url, {
       emailid: vendorEmail,
@@ -163,14 +163,14 @@ async function rateVendor(vendorEmail:string, stars:number) {
         setvendoremails((prev) => prev.filter((item) => item != emailidtoremove))
         // alert("hi")
         // alert(vendoremails);
-        let url = "http://www.localhost:2001/citizen/removefavs"
+        let url = `${API_URL}/citizen/removefavs`
         //alert("this shall be the array of vendoremails :-"+vendoremails.filter((item)=>item!=email))//sahi hai
         let obj = { email: email, vendorsemail: vendoremails.filter((item) => item !== emailidtoremove) }//this is A JSON OBJECT convert to string to show for alert
        // alert(JSON.stringify(obj))
         let resp = await axios.post(url, obj,{headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }});//now i have the favs with updated info about the users preferences
         setvendoremails(resp.data.vendoremails)
         //await getfavs();
-        let url1 = "http://www.localhost:2001/vendor/findvendors"
+        let url1 = `${API_URL}/vendor/findvendors`
         //   resp.data.vendoremails.map( (item)=>
         //   {
         //     // alert(item)

@@ -5,6 +5,7 @@ import categories from "./categories";
 import type { formobj } from "./interface_vendor";
 import { useLocation } from "react-router-dom";
 import LoginRequired from "../LoginRequired";
+const API_URL=import.meta.env.VITE_API_URL;
 let initial_obj: formobj = {
   emailid: "",
   name: "",
@@ -38,7 +39,7 @@ const [messageType, setMessageType] = useState<"success" | "error" | "">("");
 const [loading, setLoading] = useState(true);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
  async function fetchdata() {
-    let url = "http://www.localhost:2001/vendor/fetch";
+    let url = `${API_URL}/vendor/fetch`;
     //alert("hi")
     let resp = await axios.post(url, { emailid: form.emailid }, { headers: { "Content-Type": "application/x-www-form-urlencoded" } });
     // if (resp.data.status == true) {
@@ -72,7 +73,7 @@ const [loading, setLoading] = useState(true);
             }
 
             let response = await axios.post(
-                "http://www.localhost:2001/users/checkauth",
+                `${API_URL}/users/checkauth`,
                 {},
                 {
                     headers: {
@@ -217,7 +218,7 @@ async function OnFormSubmit(e: React.FormEvent<HTMLFormElement>) {
   setMessageType("");
 
   try {
-    const url = "http://www.localhost:2001/vendor/save";
+    const url = `${API_URL}/vendor/save`;
     const FrmData = new FormData();
 
     FrmData.append("emailid", form.emailid);
@@ -268,7 +269,7 @@ async function OnFormSubmit(e: React.FormEvent<HTMLFormElement>) {
 
   //==========================
   async function UpdateVendor() {
-    let url1 = "http://www.localhost:2001/vendor/getdataupdate";
+    let url1 = `${API_URL}/vendor/getdataupdate`;
     let resp = await axios.post(url1, { emailid: form.emailid }, { headers: { "Content-Type": "application/x-www-form-urlencoded" } });
 
     // console.log("lets see")
@@ -313,7 +314,7 @@ async function OnFormSubmit(e: React.FormEvent<HTMLFormElement>) {
       form.certpicurl = resp.data.msg.shoppicurl;
     alert(JSON.stringify(form));
     let response;
-    let url2 = "http://www.localhost:2001/vendor/update";
+    let url2 = `${API_URL}/vendor/update`;
     // alert(url2);
     // if(form.profilepic==null)
     if (resp.data.status == true && form.shoppic == null && form.certpic == null)//new pic nhi daali

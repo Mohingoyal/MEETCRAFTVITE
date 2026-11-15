@@ -4,6 +4,7 @@ import { url1 } from "./url"
 import axios from "axios"
 import { useLocation } from "react-router-dom";
 import LoginRequired from "../LoginRequired";
+const API_URL=import.meta.env.VITE_API_URL;
 const initialForm: CitizenForm = {
   emailid: "",
   acardno: "",
@@ -57,7 +58,7 @@ const [authenticated, setAuthenticated] = useState(false);
       return;
     }
 
-    let url = "http://www.localhost:2001/citizen/fetch";
+    let url = `${API_URL}/citizen/fetch`;
     //alert("hi")
     // setisFetching(true);
     await axios.post(url, { emailid: form.emailid }, { headers: { "Content-Type": "application/x-www-form-urlencoded" } }).then((resp) => {
@@ -89,7 +90,7 @@ const [authenticated, setAuthenticated] = useState(false);
             }//this is not running initially
             // alert("token in citizen reg"+token)
  let response = await axios.post(
-                "http://www.localhost:2001/users/checkauth",
+               `${API_URL}/users/checkauth`,
                 {},{headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }}
             );
 // alert(JSON.stringify(response.data))
@@ -158,7 +159,7 @@ if (!authenticated) {
     let Form = new FormData();
     Form.append("frontSide", file);
     setFrontPreview(preview);
-    let url = "http://www.localhost:2001/citizen/front_aadhar";
+    let url = `${API_URL}/citizen/front_aadhar`;
 
     setIsExtracting(true);
     await axios.post(url, Form, { headers: { 'Content-Type': 'multipart/form-data' } }).then((result) => {
@@ -190,7 +191,7 @@ if (!authenticated) {
     let Form = new FormData();
     Form.append("BackSide", file);//yahaan pe file lena hai not use state
     setBackPreview(preview);
-    let url = "http://www.localhost:2001/citizen/back_aadhar";
+    let url = `${API_URL}/citizen/back_aadhar`;
     setIsExtracting(true);
     await axios.post(url, Form, { headers: { 'Content-Type': 'multipart/form-data' } }).then((result) => {
       //===========================
@@ -242,7 +243,7 @@ if (!authenticated) {
     }
     alert("if condition se bahaar")
 
-    let url = "http://www.localhost:2001/citizen/update";
+    let url = `${API_URL}/citizen/update`;
 
     let resp = await axios.post(url, form, { headers: { 'Content-Type': 'multipart/form-data' } })
     if (resp.data.status != false)

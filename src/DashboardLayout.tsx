@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LoginRequired from "./LoginRequired";
-
+const API_URL=import.meta.env.VITE_API_URL;
 import { useLocation } from "react-router-dom";
 // Replace these paths with your actual component paths
 import CitizenRegistration from "./Citizen/CitizenRegistration";
@@ -41,7 +41,7 @@ const location=useLocation();
             try {
 // alert("entering try")
                 let response = await axios.post(
-                    "http://www.localhost:2001/users/checkauth",
+                   `${API_URL}/users/checkauth`,
                     {},
                   {headers: { "Content-Type": "application/x-www-form-urlencoded",'authorization' : `Bearer ${token}` }}
                 );//token bhejo

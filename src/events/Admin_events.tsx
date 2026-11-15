@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react'
 import axios from "axios"
-
+const API_URL=import.meta.env.VITE_API_URL;
 function Admin_events() {
     const [event, setevent] = useState("");
     const [services, setservices] = useState("");
 
     async function add_event() {
         // alert("HI")
-        let url = "http://www.localhost:2001/events/addservices";
+        let url = `${API_URL}/events/addservices`;
         let obj = { event: event, services: services };
         let resp = await axios.post(url, obj);
         console.log(JSON.stringify(resp.data))
@@ -16,7 +16,7 @@ function Admin_events() {
 
     async function update_event() {
         // alert("HI")
-        let url = "http://www.localhost:2001/events/updateservices";
+        let url = `${API_URL}/events/updateservices`;
         let obj = { event: event, services: services };
         let resp = await axios.post(url, obj);
         console.log(JSON.stringify(resp.data))
