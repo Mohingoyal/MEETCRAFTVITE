@@ -49,6 +49,7 @@ const [authenticated, setAuthenticated] = useState(false);
   const handleFetch = async () => {
   //   alert("HI")
   // alert(localStorage.getItem("emailid"))
+  if(localStorage.getItem("emailid"))//not null check karne ke liye
       form.emailid = localStorage.getItem("emailid")
     // alert(form.emailid)
     if (!form.emailid) {

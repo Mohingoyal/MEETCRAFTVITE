@@ -126,20 +126,21 @@ if (!authenticated) {
     return <LoginRequired />;
 }
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));//value setter for form
   };
 
-  const toggleCategory = (category) => {
+  const toggleCategory = (category:string) => {
+    
     setSelectedCategories((prev) =>
-      prev.includes(category)
+      prev.includes(category )
         ? prev.filter((item) => item !== category)//agar pehle se hai toh uncheck kar diya box
         : [...prev, category]//array ke andar new fiel add karke de diya
     );
   };
 
-  const handleShopPicture = (e) => {
+  const handleShopPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     if (e.target.files != null) {
       setShopPicture(e.target.files[0]);
@@ -157,7 +158,7 @@ if (!authenticated) {
     if (!file) return;
 
     // if (certPreview) URL.revokeObjectURL(shopPreview);
-
+if(file!=null)
     setCertificate(file);
     setForm((form) => { return { ...form, ["certpic"]: file } });//very important agar sidha certificate use kiya hota toh asynchronous nature ke karan pic pass hone mein gadbad aati
     setCertPreview(URL.createObjectURL(file));
@@ -786,7 +787,8 @@ async function OnFormSubmit(e: React.FormEvent<HTMLFormElement>) {
           </center> */}
                   {shopPicture && (
                     <p className="mt-2 break-all text-xs text-[#557362]">
-                      Selected: {shopPicture.name}
+                      
+                      Selected: {shopPicture?.name}
                     </p>
                   )}
                 </div>
