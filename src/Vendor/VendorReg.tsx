@@ -142,7 +142,7 @@ if (!authenticated) {
 
   const handleShopPicture = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-    if (e.target.files != null) {
+    if (e.target.files != null&&e.target.files[0]!=null) {
       setShopPicture(e.target.files[0]);
       setForm((form) => { return { ...form, ["shoppic"]: e.target.files[0] } });
     }
