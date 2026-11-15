@@ -466,7 +466,7 @@ const [authenticated, setAuthenticated] = useState(false);
     (currentPage - 1) * vendorsPerPage,
     currentPage * vendorsPerPage
   );
-    async function getfavourites(email:string) {
+    async function getfavourites(email:string|null) {
     let token=localStorage.getItem("token")
     let url = "http://www.localhost:2001/citizen/getfavs"
     // alert("favs")

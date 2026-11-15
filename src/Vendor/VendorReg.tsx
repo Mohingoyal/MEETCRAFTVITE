@@ -144,7 +144,7 @@ if (!authenticated) {
 
     if (e.target.files != null&&e.target.files[0]!=null) {
       setShopPicture(e.target.files[0]);
-      setForm((form) => { return { ...form, ["shoppic"]: e.target.files[0] } });
+      setForm((form) => { return { ...form, ["shoppic"]: e.target.files?.[0] } });
     } let urlofshop:string;
     if(e.target.files!=null)
      {urlofshop = URL.createObjectURL(e.target.files[0])
