@@ -1015,7 +1015,7 @@ if (!authenticated) {
                 Search results
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-[#203D32]">
-                Vendors for your event
+                Vendors for your event are here right here 
               </h2>
               <p className="mt-2 text-sm text-[#78837A]">
                 {[city, eventchosen, selectedServices.join(", ")]
