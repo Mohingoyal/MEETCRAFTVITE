@@ -491,7 +491,7 @@ useEffect(() => {
 console.log("EVENT ORIGIN:", window.location.origin);
 console.log("EVENT TOKEN:", localStorage.getItem("token"));
             if (!token) {
-                     alert("here comes catch of token")
+                    //  alert("here comes catch of token")
                 setAuthenticated(false);
                 setfavs([]);
                 return;
@@ -637,7 +637,7 @@ if (!authenticated) {
     }
     )
 
-    alert(JSON.stringify(eventobj))
+    // alert(JSON.stringify(eventobj))
 //iss wale step mein. use event ke corros[ponding services bharli]
     if (eventobj[0]?.services) {
       const serviceArray = eventobj[0].services
@@ -694,11 +694,11 @@ if (!authenticated) {
 
       // Supports either an array or { vendors: [...] }
       const results = resp.data;
-if(results.status!=null)
-{
-  alert(results.msg)
-  return ;
-}
+// if(results.status!=null)
+// {
+//   alert(results.msg)
+//   return ;
+// }
 
       setVendors(results);
 
@@ -750,7 +750,7 @@ if(results.status!=null)
         }
     });
     // alert(favs);
-    alert(resp.data)
+    // alert(resp.data)
   }
   //===============================================
   return (
@@ -1008,10 +1008,7 @@ if(results.status!=null)
                   </button>
                 </div>
               )}
-            </main>
-          </div>
-
-          {/* Vendor results */}
+                   {/* Vendor results */}
           {hasSearched && (
             <section className="mt-12 border-t border-[#DCE4DC] pt-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#57816A]">
@@ -1042,7 +1039,7 @@ if(results.status!=null)
                   </p>
                 </div>
               ) : (
-                <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
 
 
                   {currentVendors.map((vendor) => (
@@ -1292,6 +1289,10 @@ if(results.status!=null)
               )}
             </section>
           )}
+            </main>
+          </div>
+
+        
         </div>
       </div>
     </>
