@@ -726,17 +726,24 @@ if (!authenticated) {
 
   //============delicious============================
   async function addtofavourites(vendormail:string) {
-
+type Designobj={
+    Citizenemail:string,
+    vendoremails:[string]
+}
+type design={
+  email:string,
+favourites: string[]
+}
             let token = localStorage.getItem("token");
     let url = `${API_URL}/citizen/updatefavs`
-    let resp;
+    let resp:Designobj;
     //  alert("added")
     setfavs((prev) =>//setfavs apna pura array of string de diya
       prev.includes(vendormail)
         ? prev.filter((item) => item !== vendormail)//will return all items without the vendor email
         : [...prev, vendormail]
     );
-    let obj;
+    let obj:design;
     if (favs.includes(vendormail)) {
       let favouritesobj = favs.filter((item) => item !== vendormail)
       obj = { email: email, favourites: favouritesobj }//removal of that object
