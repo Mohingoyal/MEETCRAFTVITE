@@ -726,17 +726,14 @@ if (!authenticated) {
 
   //============delicious============================
   async function addtofavourites(vendormail:string) {
-type Designobj={
-    Citizenemail:string,
-    vendoremails:[string]
-}
+
 type design={
   email:string,
-favourites: string[]
+favourites: string[]|null
 }
             let token = localStorage.getItem("token");
     let url = `${API_URL}/citizen/updatefavs`
-    let resp:Designobj;
+
     //  alert("added")
     setfavs((prev) =>//setfavs apna pura array of string de diya
       prev.includes(vendormail)
@@ -751,7 +748,7 @@ favourites: string[]
     else {
       obj = { email: email, favourites: [...favs, vendormail] }
     }
-    resp = await axios.post(url, obj,{
+   await axios.post(url, obj,{
         headers: {
             authorization: `Bearer ${token}`
         }
