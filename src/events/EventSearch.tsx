@@ -728,7 +728,7 @@ if (!authenticated) {
   async function addtofavourites(vendormail:string) {
 
 type design={
-  email:string,
+  email:string|null,
 favourites: string[]|null
 }
             let token = localStorage.getItem("token");
